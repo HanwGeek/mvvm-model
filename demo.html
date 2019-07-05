@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Demo</title>
+</head>
+<body>
+  <div id='app'>
+    {{title}}
+    <input type="text" v-model="str">
+    {{str}}
+  </div>
+  <script src="./observer.js"></script>
+  <script src="./watcher.js"></script>
+  <script src="./compile.js"></script>
+  <script src="./mvvm.js"></script>
+  <script>
+    var vm = new MVVM({
+      el: '#app',
+      data: {
+        title: 'Hello world!',
+        str: ""
+      }
+    });
+  </script>
+</body>
+</html>
