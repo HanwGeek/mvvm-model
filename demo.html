@@ -6,8 +6,8 @@
 <body>
   <div id='app'>
     {{title}}
-    <input type="text" v-model="str">
-    {{str}}
+    <!-- <input type="text" v-model="str">
+    {{str}} -->
   </div>
   <script src="./observer.js"></script>
   <script src="./watcher.js"></script>
@@ -18,7 +18,6 @@
       el: '#app',
       data: {
         title: 'Hello world!',
-        str: ""
       }
     });
   </script>

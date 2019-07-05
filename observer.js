@@ -20,16 +20,18 @@ Observer.prototype = {
     var dep = new Dep();
     // 递归监听子属性
     var childObj = observe(val);
+    console.log("Observe", key);
     Object.defineProperty(data, key, {
       enumerable: true,
       configurable: false,
       get: function() {
+        console.log("Get " + key + ":" + val);
         Dep.target && dep.depend(Dep.target);
         return val;
       },
       set: function(newVal) {
         if (newVal === val) {return;}
-        console.log("Value Change: ", val, " ==> ", newVal);
+        console.log(key , "value Change: ", val, " ==> ", newVal);
         val = newVal;
         childObj = observe(newVal);
         dep.notify();
@@ -54,6 +56,7 @@ function Dep() {
 
 Dep.prototype = {
   addSub: function(sub) {
+    console.log("Add watcher of '" + sub.expOrFn + "' to dep:" + this.id);
     this.subs.push(sub);
   },
   depend: function() {
@@ -66,6 +69,7 @@ Dep.prototype = {
     }
   },
   notify: function() {
+    console.log("Notify watcher to update view");
     this.subs.forEach(function(sub) {
       sub.update();
     });
